@@ -1,0 +1,59 @@
+import type { MenuItem } from "primeng/api";
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { Menubar } from "primeng/menubar";
+import { BadgeModule } from "primeng/badge";
+import { AvatarModule } from "primeng/avatar";
+import { InputTextModule } from "primeng/inputtext";
+import { Ripple } from "primeng/ripple";
+
+@Component({
+	selector: "app-header",
+	imports: [
+		Menubar,
+		BadgeModule,
+		AvatarModule,
+		InputTextModule,
+		Ripple,
+		CommonModule,
+	],
+	templateUrl: "./header.component.html",
+	styleUrl: "./header.component.scss",
+})
+export class HeaderComponent {
+	items: MenuItem[] | undefined;
+
+	ngOnInit() {
+		this.items = [
+			{
+				label: "Home",
+				icon: "pi pi-home",
+			},
+			{
+				label: "Projects",
+				icon: "pi pi-search",
+				badge: "3",
+				items: [
+					{
+						label: "Core",
+						icon: "pi pi-bolt",
+						shortcut: "⌘+S",
+					},
+					{
+						label: "Blocks",
+						icon: "pi pi-server",
+						shortcut: "⌘+B",
+					},
+					{
+						separator: true,
+					},
+					{
+						label: "UI Kit",
+						icon: "pi pi-pencil",
+						shortcut: "⌘+U",
+					},
+				],
+			},
+		];
+	}
+}
