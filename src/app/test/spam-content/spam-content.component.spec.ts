@@ -1,17 +1,17 @@
 import { type ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FooterComponent } from "./footer.component";
+import { SpamContentComponent } from "./spam-content.component";
 
-describe("FooterComponent", () => {
-	let component: FooterComponent;
-	let fixture: ComponentFixture<FooterComponent>;
+describe("SpamContentComponent", () => {
+	let component: SpamContentComponent;
+	let fixture: ComponentFixture<SpamContentComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [FooterComponent],
+			imports: [SpamContentComponent],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(FooterComponent);
+		fixture = TestBed.createComponent(SpamContentComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

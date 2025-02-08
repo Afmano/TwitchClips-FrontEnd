@@ -1,23 +1,19 @@
-<div class="card">
-    <p-menubar [model]="items"><!-- Add items here -->
+<div class="card m-1">
+    <p-menubar [model]="items">
         <ng-template #start>
-
-
+            <!-- Logo -->
         </ng-template>
         <ng-template #item let-item let-root="root">
-            <a pRipple class="flex items-center p-menubar-item-link">
+            <a [routerLink]="item.routerLink" pRipple class="flex items-center p-menubar-item-link">
+                <i *ngIf="item.icon" [ngClass]="item.icon"></i>
                 <span>{{ item.label }}</span>
                 <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />
-                <span *ngIf="item.shortcut"
-                    class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{
-                    item.shortcut }}</span>
                 <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
             </a>
         </ng-template>
         <ng-template #end>
             <div class="flex items-center gap-2">
                 <input type="text" pInputText placeholder="Search" class="w-36" />
-                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
             </div>
         </ng-template>
     </p-menubar>

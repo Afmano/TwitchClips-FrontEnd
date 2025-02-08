@@ -1,2 +1,14 @@
-<i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-<i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
+<p-breadcrumb class="max-w-full" [model]="items">
+    <ng-template #item let-item>
+        <ng-container *ngIf="item.route; else elseBlock">
+            <a [routerLink]="item.route" class="p-breadcrumb-item-link">
+                <span class="text-primary font-semibold">{{ item.label }}</span>
+            </a>
+        </ng-container>
+        <ng-template #elseBlock>
+            <a [href]="item.url">
+                <span class="text-color">{{ item.label }}</span>
+            </a>
+        </ng-template>
+    </ng-template>
+</p-breadcrumb>

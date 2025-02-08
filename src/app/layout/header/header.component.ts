@@ -1,10 +1,12 @@
 import type { MenuItem } from "primeng/api";
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, type OnInit } from "@angular/core";
 import { Menubar } from "primeng/menubar";
 import { BadgeModule } from "primeng/badge";
 import { AvatarModule } from "primeng/avatar";
 import { InputTextModule } from "primeng/inputtext";
+import { ButtonModule } from "primeng/button";
+import { RouterModule } from "@angular/router";
 import { Ripple } from "primeng/ripple";
 
 @Component({
@@ -14,13 +16,15 @@ import { Ripple } from "primeng/ripple";
 		BadgeModule,
 		AvatarModule,
 		InputTextModule,
-		Ripple,
 		CommonModule,
+		ButtonModule,
+		RouterModule,
+		Ripple,
 	],
 	templateUrl: "./header.component.html",
-	styleUrl: "./header.component.scss",
+	styleUrl: "./header.component.css",
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 	items: MenuItem[] | undefined;
 
 	ngOnInit() {
@@ -28,29 +32,35 @@ export class HeaderComponent {
 			{
 				label: "Home",
 				icon: "pi pi-home",
+				routerLink: "/",
 			},
 			{
-				label: "Projects",
+				label: "Test",
+				icon: "pi pi-home",
+				routerLink: "/test",
+			},
+			{
+				label: "Numbers",
 				icon: "pi pi-search",
-				badge: "3",
 				items: [
 					{
-						label: "Core",
-						icon: "pi pi-bolt",
-						shortcut: "⌘+S",
+						label: "One",
+						routerLink: "/1",
 					},
 					{
-						label: "Blocks",
-						icon: "pi pi-server",
-						shortcut: "⌘+B",
+						label: "Two",
+						routerLink: "/2",
+					},
+					{
+						label: "Three",
+						routerLink: "/3",
 					},
 					{
 						separator: true,
 					},
 					{
-						label: "UI Kit",
-						icon: "pi pi-pencil",
-						shortcut: "⌘+U",
+						label: "Ten",
+						routerLink: "/10",
 					},
 				],
 			},
