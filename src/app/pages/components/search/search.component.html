@@ -1,0 +1,4 @@
+<div class="card flex justify-center">
+    <p-autocomplete [(ngModel)]="selectedValue" [suggestions]="filteredValues" (completeMethod)="filterValue($event)"
+        optionLabel="label" lazy="true" (onLazyLoad)="lazyLoad($event)" />
+</div>
