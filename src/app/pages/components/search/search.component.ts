@@ -4,7 +4,6 @@ import { type SelectChangeEvent, SelectModule } from "primeng/select";
 import { SearchService } from "../../../services/api/search.service";
 import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
-import { MessageService } from "primeng/api";
 
 const searchLimit = 3;
 type SearchResponse = components["schemas"]["SearchResponse"];
@@ -24,7 +23,6 @@ export class SearchComponent {
 	constructor(
 		private router: Router,
 		private searchService: SearchService,
-		private messageService: MessageService,
 	) {}
 
 	async onChange(event: SelectChangeEvent) {
