@@ -1,8 +1,15 @@
 <div class="card flex justify-center">
-    <p-select name="searchField" ngDefaultControl [options]="testValues" placeholder="Select a Value" [editable]="true"
-        optionLabel="label" class="w-full md:w-56" [loading]="isLoading" (onChange)="onChange($event)">
+    <p-select name="searchField" ngDefaultControl [options]="searchResults" placeholder="Search game or channel"
+        [editable]="true" class="w-full md:w-80" [loading]="isLoading" (onChange)="onChange($event)">
         <ng-template let-item #item>
-            <a [routerLink]="item.route">{{ item.id }}.{{ item.label }}.{{ item.value }}</a>
+            <span class="inline-flex gap-1.5 items-center">
+                <ng-container *ngIf="item.broadcasterLogin; else game">
+                    <img class="w-8" [src]="item.thumbnailUrl" /><span>{{item.displayName}}</span>
+                </ng-container>
+                <ng-template #game>
+                    <img class="w-8" [src]="item.boxArtUrl" /> <span>{{item.name}}</span>
+                </ng-template>
+            </span>
         </ng-template>
     </p-select>
 </div>

@@ -30,7 +30,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["SavedClip"][];
+                        "application/json": components["schemas"]["SavedClip"][];
+                        "text/json": components["schemas"]["SavedClip"][];
+                    };
                 };
             };
         };
@@ -68,7 +72,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["SavedClip"][];
+                        "application/json": components["schemas"]["SavedClip"][];
+                        "text/json": components["schemas"]["SavedClip"][];
+                    };
                 };
             };
         };
@@ -185,7 +193,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["SearchResponse"];
+                        "application/json": components["schemas"]["SearchResponse"];
+                        "text/json": components["schemas"]["SearchResponse"];
+                    };
                 };
             };
         };
@@ -201,8 +213,29 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        Channel: {
+            readonly gameId?: string | null;
+            readonly gameName?: string | null;
+            readonly id?: string | null;
+            readonly broadcasterLogin?: string | null;
+            readonly displayName?: string | null;
+            readonly broadcasterLanguage?: string | null;
+            readonly title?: string | null;
+            readonly thumbnailUrl?: string | null;
+            readonly isLive?: boolean;
+            /** Format: date-time */
+            readonly startedAt?: string | null;
+            readonly tagIds?: string[] | null;
+            readonly tags?: string[] | null;
+        };
         /** @enum {string} */
         DateType: "Today" | "Week" | "Month" | "Year" | "FiveYears" | "AllTime";
+        Game: {
+            readonly id?: string | null;
+            readonly name?: string | null;
+            readonly boxArtUrl?: string | null;
+            readonly igdbId?: string | null;
+        };
         /** @enum {string} */
         OrderBy: "Views" | "Time";
         /** @enum {string} */
@@ -228,6 +261,10 @@ export interface components {
         };
         /** @enum {string} */
         SearchFlags: "Channel" | "Category" | "All";
+        SearchResponse: {
+            channels?: components["schemas"]["Channel"][] | null;
+            games?: components["schemas"]["Game"][] | null;
+        };
     };
     responses: never;
     parameters: never;

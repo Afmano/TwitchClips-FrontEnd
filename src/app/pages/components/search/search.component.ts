@@ -1,48 +1,61 @@
-import { Component, type OnInit } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { type SelectChangeEvent, SelectModule } from "primeng/select";
+import { SearchService } from "../../../services/api/search.service";
+import type { components } from "../../../../api/schemas";
+import { CommonModule } from "@angular/common";
+import { MessageService } from "primeng/api";
 
-interface TestSelected {
-	id: number;
-	value: string;
-	label: string;
-	route: string;
-}
 const searchLimit = 3;
-
+type SearchResponse = components["schemas"]["SearchResponse"];
+type Game = components["schemas"]["Game"];
+type Channel = components["schemas"]["Channel"];
 @Component({
 	selector: "app-search",
-	imports: [SelectModule, RouterModule],
+	imports: [SelectModule, RouterModule, CommonModule],
 	templateUrl: "./search.component.html",
 	styleUrl: "./search.component.css",
 })
-export class SearchComponent implements OnInit {
-	testValues!: TestSelected[];
-	filteredValues: TestSelected[] | undefined;
+export class SearchComponent {
+	searchType = input<components["schemas"]["SearchFlags"]>("All");
+	searchResults: (Game | Channel)[] = [];
 	isLoading = false;
 
-	constructor(private router: Router) {}
+	constructor(
+		private router: Router,
+		private searchService: SearchService,
+		private messageService: MessageService,
+	) {}
 
-	ngOnInit() {
-		this.testValues = [
-			{ id: 1, value: "test1", label: "1 test", route: "route1" },
-			{ id: 2, value: "test2", label: "2 test", route: "route2" },
-			{ id: 3, value: "test3", label: "3 test", route: "route3" },
-		];
-	}
-
-	onChange(event: SelectChangeEvent) {
+	async onChange(event: SelectChangeEvent) {
 		if (typeof event.value === "string") {
 			const query = event.value as string;
 			console.log(event.value);
 			if (query.length >= searchLimit) {
 				this.isLoading = true;
-			} else {
+				this.searchResults.length = 0;
+				const result = (
+					await this.searchService.search(query, this.searchType())
+				).data;
+
+				if (result?.games) {
+					this.searchResults.push(...result.games);
+				}
+
+				if (result?.channels) {
+					this.searchResults.push(...result.channels);
+				}
+
 				this.isLoading = false;
 			}
 		} else {
-			const selected = event.value as TestSelected;
-			this.router.navigate([selected.route]);
+			const selected = event.value;
+			const type = this.returnTypeName(event.value);
+			this.router.navigate([type, selected.id]);
 		}
+	}
+	returnTypeName(item: Game | Channel) {
+		// biome-ignore lint/suspicious/noExplicitAny:
+		return (item as any).broadcasterLogin !== undefined ? "channel" : "game";
 	}
 }

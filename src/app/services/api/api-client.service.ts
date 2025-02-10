@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
+import { environment } from "../../../environments/environment";
 import createClient, { type Middleware } from "openapi-fetch";
-import type { paths } from "../../api/schemas";
-import { TokenService } from "./token.service";
+import type { paths } from "../../../api/schemas";
+import { TokenService } from ".././token.service";
 
 @Injectable({
 	providedIn: "root",
 })
 export class ApiClientService {
-	public apiClient = createClient<paths>({ baseUrl: environment.apiUrl });
+	public client = createClient<paths>({ baseUrl: environment.apiUrl });
 	private authMiddleware: Middleware = {
 		onRequest: async ({ request }) => {
 			const accessToken = this.tokenService.getToken();
@@ -19,7 +19,7 @@ export class ApiClientService {
 		},
 	};
 
-	constructor(private tokenService: TokenService) {
-		this.apiClient.use(this.authMiddleware);
+	constructor(public tokenService: TokenService) {
+		this.client.use(this.authMiddleware);
 	}
 }

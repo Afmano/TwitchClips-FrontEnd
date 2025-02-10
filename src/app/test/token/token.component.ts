@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { TokenService } from "../../services/token.service";
-import { ApiClientService } from "../../services/api-client.service";
+import { ApiClientService } from "../../services/api/api-client.service";
 import { ButtonModule } from "primeng/button";
 import { MessageService } from "primeng/api";
 import { InputGroup } from "primeng/inputgroup";
@@ -14,12 +13,11 @@ import { InputTextModule } from "primeng/inputtext";
 })
 export class TokenComponent {
 	constructor(
-		private tokenService: TokenService,
 		private apiClient: ApiClientService,
 		private messageService: MessageService,
 	) {}
 	getToken() {
-		const token = this.tokenService.getToken();
+		const token = this.apiClient.tokenService.getToken();
 		if (token !== null) {
 			this.messageService.add({
 				severity: "info",
@@ -34,7 +32,7 @@ export class TokenComponent {
 		}
 	}
 	setToken(value: string) {
-		this.tokenService.setToken(value);
+		this.apiClient.tokenService.setToken(value);
 		this.messageService.add({
 			severity: "info",
 			summary: "Token setted",
@@ -42,7 +40,7 @@ export class TokenComponent {
 		});
 	}
 	checkRequest(searchValue: string) {
-		this.apiClient.apiClient
+		this.apiClient.client
 			.GET("/api/Search", {
 				params: { query: { searchType: "All", searchValue: searchValue } },
 			})
@@ -50,12 +48,14 @@ export class TokenComponent {
 				this.messageService.add({
 					severity: "success",
 					summary: "Request successful",
+					detail: res.data as string,
 				}),
 			)
 			.catch((err) =>
 				this.messageService.add({
 					severity: "error",
 					summary: "Error while processing request",
+					detail: err,
 				}),
 			);
 	}
