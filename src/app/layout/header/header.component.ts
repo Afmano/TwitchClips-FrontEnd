@@ -45,6 +45,11 @@ export class HeaderComponent implements OnInit {
 				routerLink: "/search",
 			},
 			{
+				label: "Token",
+				icon: "pi pi-home",
+				routerLink: "/token",
+			},
+			{
 				label: "Numbers",
 				icon: "pi pi-search",
 				items: [

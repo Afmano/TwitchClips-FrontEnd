@@ -1,4 +1,8 @@
 <div class="card flex justify-center">
-    <p-autocomplete [(ngModel)]="selectedValue" [suggestions]="filteredValues" (completeMethod)="filterValue($event)"
-        optionLabel="label" lazy="true" (onLazyLoad)="lazyLoad($event)" />
+    <p-select name="searchField" ngDefaultControl [options]="testValues" placeholder="Select a Value" [editable]="true"
+        optionLabel="label" class="w-full md:w-56" [loading]="isLoading" (onChange)="onChange($event)">
+        <ng-template let-item #item>
+            <a [routerLink]="item.route">{{ item.id }}.{{ item.label }}.{{ item.value }}</a>
+        </ng-template>
+    </p-select>
 </div>

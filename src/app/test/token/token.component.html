@@ -1,0 +1,11 @@
+<div class="card inline-grid flex-col md:flex-row gap-4">
+    <p-button label="Get token" (onClick)="getToken()" />
+    <p-inputgroup>
+        <input #setTokenInput pInputText placeholder="Token" />
+        <p-button label="Set token" (onClick)="setToken(setTokenInput.value)" />
+    </p-inputgroup>
+    <p-inputgroup>
+        <input #sendRequestInput pInputText placeholder="Search" />
+        <p-button label="Send request" (onClick)="checkRequest(sendRequestInput.value)" />
+    </p-inputgroup>
+</div>

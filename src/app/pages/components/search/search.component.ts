@@ -1,44 +1,48 @@
 import { Component, type OnInit } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import {
-	type AutoCompleteCompleteEvent,
-	type AutoCompleteLazyLoadEvent,
-	AutoCompleteModule,
-} from "primeng/autocomplete";
+import { Router, RouterModule } from "@angular/router";
+import { type SelectChangeEvent, SelectModule } from "primeng/select";
 
 interface TestSelected {
 	id: number;
 	value: string;
 	label: string;
+	route: string;
 }
+const searchLimit = 3;
 
 @Component({
 	selector: "app-search",
-	imports: [AutoCompleteModule, FormsModule],
+	imports: [SelectModule, RouterModule],
 	templateUrl: "./search.component.html",
 	styleUrl: "./search.component.css",
 })
 export class SearchComponent implements OnInit {
 	testValues!: TestSelected[];
-	filteredValues!: TestSelected[];
-	selectedValue: TestSelected | undefined;
+	filteredValues: TestSelected[] | undefined;
 	isLoading = false;
+
+	constructor(private router: Router) {}
 
 	ngOnInit() {
 		this.testValues = [
-			{ id: 1, value: "test1", label: "1" },
-			{ id: 2, value: "test2", label: "2" },
-			{ id: 3, value: "test3", label: "3" },
+			{ id: 1, value: "test1", label: "1 test", route: "route1" },
+			{ id: 2, value: "test2", label: "2 test", route: "route2" },
+			{ id: 3, value: "test3", label: "3 test", route: "route3" },
 		];
 	}
 
-	filterValue(event: AutoCompleteCompleteEvent) {
-		const query = event.query;
-		this.filteredValues = this.testValues.filter((item) =>
-			item.value.includes(query),
-		);
-	}
-	lazyLoad(event: AutoCompleteLazyLoadEvent) {
-		console.log(event);
+	onChange(event: SelectChangeEvent) {
+		if (typeof event.value === "string") {
+			const query = event.value as string;
+			console.log(event.value);
+			if (query.length >= searchLimit) {
+				this.isLoading = true;
+			} else {
+				this.isLoading = false;
+			}
+		} else {
+			const selected = event.value as TestSelected;
+			this.router.navigate([selected.route]);
+		}
 	}
 }
