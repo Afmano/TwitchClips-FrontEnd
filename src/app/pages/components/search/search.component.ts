@@ -25,14 +25,13 @@ export class SearchComponent {
 	async onChange(event: SelectChangeEvent) {
 		if (typeof event.value === "string") {
 			const query = event.value as string;
-			console.log(event.value);
+			this.searchResults.length = 0;
 			if (query.length >= searchLimit) {
 				this.isLoading = true;
-				this.searchResults.length = 0;
 				const result = (
 					await this.searchService.search(query, this.searchType())
 				).data;
-
+				this.searchResults.length = 0;
 				if (result?.games) {
 					this.searchResults.push(...result.games);
 				}

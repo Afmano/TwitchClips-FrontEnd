@@ -1,15 +1,22 @@
 <div class="card flex justify-center">
     <p-select name="searchField" ngDefaultControl [options]="searchResults" placeholder="Search game or channel"
-        [editable]="true" class="w-full md:w-80" [loading]="isLoading" (onChange)="onChange($event)">
+        [editable]="true" class="searchField" [loading]="isLoading" (onChange)="onChange($event)" scrollHeight="450px"
+        [fluid]="false">
         <ng-template let-item #item>
-            <span class="inline-flex gap-1.5 items-center">
+            <span class="inline-flex gap-2.5 items-center">
                 <ng-container *ngIf="item.broadcasterLogin; else game">
-                    <img class="w-8" [src]="item.thumbnailUrl" /><span>{{item.displayName}}</span>
+                    <img class="w-8" [src]="item.thumbnailUrl" />
+                    <span class="itemText">{{item.displayName}}</span>
                 </ng-container>
                 <ng-template #game>
-                    <img class="w-8" [src]="item.boxArtUrl" /> <span>{{item.name}}</span>
+                    <img class="w-8" [src]="item.boxArtUrl" />
+                    <span class="itemText">{{item.name}}</span>
                 </ng-template>
             </span>
+        </ng-template>
+        <ng-template #empty>
+            <span *ngIf="isLoading; else notFound">Searching...</span>
+            <ng-template #notFound>No results</ng-template>
         </ng-template>
     </p-select>
 </div>

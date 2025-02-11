@@ -8,7 +8,7 @@ export class GameService {
 	private apiClient = inject(ApiClientService);
 
 	async get(id: string) {
-		return await this.apiClient.client.GET("/api/Game/Get/{id}", {
+		return await this.apiClient.client.GET("/api/Game/{id}", {
 			params: { path: { id: id } },
 		});
 	}

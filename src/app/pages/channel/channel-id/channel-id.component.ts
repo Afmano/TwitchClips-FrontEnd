@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import type { components } from "../../../../api/schemas";
 
-type Channel = components["schemas"]["Channel"];
+type Channel = components["schemas"]["ChannelResponse"];
 @Component({
 	selector: "app-channel-id",
 	imports: [CommonModule],

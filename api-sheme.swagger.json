@@ -5,7 +5,7 @@
     "version": "v0.1"
   },
   "paths": {
-    "/api/Channel/Get/{id}": {
+    "/api/Channel/{id}": {
       "get": {
         "tags": [
           "Channel"
@@ -26,17 +26,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ChannelInformation"
+                  "$ref": "#/components/schemas/ChannelResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ChannelInformation"
+                  "$ref": "#/components/schemas/ChannelResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ChannelInformation"
+                  "$ref": "#/components/schemas/ChannelResponse"
                 }
               }
             }
@@ -184,7 +184,7 @@
         }
       }
     },
-    "/api/Game/Get/{id}": {
+    "/api/Game/{id}": {
       "get": {
         "tags": [
           "Game"
@@ -508,6 +508,18 @@
         },
         "additionalProperties": false
       },
+      "ChannelResponse": {
+        "type": "object",
+        "properties": {
+          "channelInformation": {
+            "$ref": "#/components/schemas/ChannelInformation"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
       "DateType": {
         "enum": [
           "Today",
@@ -659,6 +671,67 @@
               "$ref": "#/components/schemas/Game"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "login": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "broadcasterType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "profileImageUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "offlineImageUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "viewCount": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false

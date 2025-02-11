@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/api/Channel/Get/{id}": {
+    "/api/Channel/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -28,9 +28,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["ChannelInformation"];
-                        "application/json": components["schemas"]["ChannelInformation"];
-                        "text/json": components["schemas"]["ChannelInformation"];
+                        "text/plain": components["schemas"]["ChannelResponse"];
+                        "application/json": components["schemas"]["ChannelResponse"];
+                        "text/json": components["schemas"]["ChannelResponse"];
                     };
                 };
             };
@@ -127,7 +127,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Game/Get/{id}": {
+    "/api/Game/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -318,6 +318,10 @@ export interface components {
             readonly delay?: number;
             readonly tags?: string[] | null;
         };
+        ChannelResponse: {
+            channelInformation?: components["schemas"]["ChannelInformation"];
+            user?: components["schemas"]["User"];
+        };
         /** @enum {string} */
         DateType: "Today" | "Week" | "Month" | "Year" | "FiveYears" | "AllTime";
         Game: {
@@ -354,6 +358,21 @@ export interface components {
         SearchResponse: {
             channels?: components["schemas"]["Channel"][] | null;
             games?: components["schemas"]["Game"][] | null;
+        };
+        User: {
+            readonly id?: string | null;
+            readonly login?: string | null;
+            readonly displayName?: string | null;
+            /** Format: date-time */
+            readonly createdAt?: string;
+            readonly type?: string | null;
+            readonly broadcasterType?: string | null;
+            readonly description?: string | null;
+            readonly profileImageUrl?: string | null;
+            readonly offlineImageUrl?: string | null;
+            /** Format: int64 */
+            readonly viewCount?: number;
+            readonly email?: string | null;
         };
     };
     responses: never;

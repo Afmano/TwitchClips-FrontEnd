@@ -1,9 +1,10 @@
 <div>
     <div *ngIf="channel; else loading">
-        <p>Id: {{channel.id}}</p>
-        <p>Login: {{channel.broadcasterLogin}}</p>
-        <p>Language: {{channel.broadcasterLanguage}}</p>
-        <img [src]="channel.thumbnailUrl" />
+        <p>Id: {{channel.user?.id}}</p>
+        <p>Login: {{channel.user?.displayName}}</p>
+        <p>Language: {{channel.channelInformation?.broadcasterLanguage}}</p>
+        <p>Description: {{channel.user?.description}}</p>
+        <img [src]="channel.user?.profileImageUrl" />
     </div>
     <ng-template #loading>Loading...</ng-template>
 </div>

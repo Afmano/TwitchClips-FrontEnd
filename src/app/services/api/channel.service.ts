@@ -8,7 +8,7 @@ export class ChannelService {
 	private apiClient = inject(ApiClientService);
 
 	async get(id: string) {
-		return await this.apiClient.client.GET("/api/Channel/Get/{id}", {
+		return await this.apiClient.client.GET("/api/Channel/{id}", {
 			params: { path: { id: id } },
 		});
 	}
