@@ -1,1 +1,8 @@
-<p>game-id works!</p>
+<div>
+    <div *ngIf="gameData; else loading">
+        <p>Id: {{gameData.id}}</p>
+        <p>Name: {{gameData.name}}</p>
+        <img [src]="boxArtConverted" />
+    </div>
+    <ng-template #loading>Loading...</ng-template>
+</div>

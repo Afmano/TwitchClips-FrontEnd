@@ -1,1 +1,9 @@
-<p>channel-id works!</p>
+<div>
+    <div *ngIf="channel; else loading">
+        <p>Id: {{channel.id}}</p>
+        <p>Login: {{channel.broadcasterLogin}}</p>
+        <p>Language: {{channel.broadcasterLanguage}}</p>
+        <img [src]="channel.thumbnailUrl" />
+    </div>
+    <ng-template #loading>Loading...</ng-template>
+</div>

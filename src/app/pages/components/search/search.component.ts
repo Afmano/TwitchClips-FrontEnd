@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, inject, input } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { type SelectChangeEvent, SelectModule } from "primeng/select";
 import { SearchService } from "../../../services/api/search.service";
@@ -6,7 +6,6 @@ import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
 
 const searchLimit = 3;
-type SearchResponse = components["schemas"]["SearchResponse"];
 type Game = components["schemas"]["Game"];
 type Channel = components["schemas"]["Channel"];
 @Component({
@@ -16,14 +15,12 @@ type Channel = components["schemas"]["Channel"];
 	styleUrl: "./search.component.css",
 })
 export class SearchComponent {
+	private router = inject(Router);
+	private searchService = inject(SearchService);
+
 	searchType = input<components["schemas"]["SearchFlags"]>("All");
 	searchResults: (Game | Channel)[] = [];
 	isLoading = false;
-
-	constructor(
-		private router: Router,
-		private searchService: SearchService,
-	) {}
 
 	async onChange(event: SelectChangeEvent) {
 		if (typeof event.value === "string") {

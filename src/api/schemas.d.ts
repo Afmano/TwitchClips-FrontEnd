@@ -4,6 +4,45 @@
  */
 
 export interface paths {
+    "/api/Channel/Get/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["ChannelInformation"];
+                        "application/json": components["schemas"]["ChannelInformation"];
+                        "text/json": components["schemas"]["ChannelInformation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/Clip/GetClipsByGame": {
         parameters: {
             query?: never;
@@ -76,6 +115,45 @@ export interface paths {
                         "text/plain": components["schemas"]["SavedClip"][];
                         "application/json": components["schemas"]["SavedClip"][];
                         "text/json": components["schemas"]["SavedClip"][];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/Game/Get/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["Game"];
+                        "application/json": components["schemas"]["Game"];
+                        "text/json": components["schemas"]["Game"];
                     };
                 };
             };
@@ -228,6 +306,18 @@ export interface components {
             readonly tagIds?: string[] | null;
             readonly tags?: string[] | null;
         };
+        ChannelInformation: {
+            readonly broadcasterId?: string | null;
+            readonly broadcasterLogin?: string | null;
+            readonly broadcasterName?: string | null;
+            readonly broadcasterLanguage?: string | null;
+            readonly gameId?: string | null;
+            readonly gameName?: string | null;
+            readonly title?: string | null;
+            /** Format: int32 */
+            readonly delay?: number;
+            readonly tags?: string[] | null;
+        };
         /** @enum {string} */
         DateType: "Today" | "Week" | "Month" | "Year" | "FiveYears" | "AllTime";
         Game: {
@@ -260,7 +350,7 @@ export interface components {
             duration?: number;
         };
         /** @enum {string} */
-        SearchFlags: "Channel" | "Category" | "All";
+        SearchFlags: "Channel" | "Game" | "All";
         SearchResponse: {
             channels?: components["schemas"]["Channel"][] | null;
             games?: components["schemas"]["Game"][] | null;

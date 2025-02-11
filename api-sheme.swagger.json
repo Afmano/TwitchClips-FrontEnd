@@ -5,6 +5,45 @@
     "version": "v0.1"
   },
   "paths": {
+    "/api/Channel/Get/{id}": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChannelInformation"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChannelInformation"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChannelInformation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Clip/GetClipsByGame": {
       "get": {
         "tags": [
@@ -138,6 +177,45 @@
                   "items": {
                     "$ref": "#/components/schemas/SavedClip"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Game/Get/{id}": {
+      "get": {
+        "tags": [
+          "Game"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Game"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Game"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Game"
                 }
               }
             }
@@ -376,6 +454,60 @@
         },
         "additionalProperties": false
       },
+      "ChannelInformation": {
+        "type": "object",
+        "properties": {
+          "broadcasterId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "broadcasterLogin": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "broadcasterName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "broadcasterLanguage": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "gameId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "gameName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DateType": {
         "enum": [
           "Today",
@@ -506,7 +638,7 @@
       "SearchFlags": {
         "enum": [
           "Channel",
-          "Category",
+          "Game",
           "All"
         ],
         "type": "string"

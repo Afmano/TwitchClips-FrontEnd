@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ApiClientService } from "../../services/api/api-client.service";
 import { ButtonModule } from "primeng/button";
 import { MessageService } from "primeng/api";
@@ -12,10 +12,8 @@ import { InputTextModule } from "primeng/inputtext";
 	styleUrl: "./token.component.css",
 })
 export class TokenComponent {
-	constructor(
-		private apiClient: ApiClientService,
-		private messageService: MessageService,
-	) {}
+	private apiClient = inject(ApiClientService);
+	private messageService = inject(MessageService);
 	getToken() {
 		const token = this.apiClient.tokenService.getToken();
 		if (token !== null) {

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { ApiClientService } from "./api-client.service";
 import type { components } from "../../../api/schemas";
 
@@ -6,7 +6,8 @@ import type { components } from "../../../api/schemas";
 	providedIn: "root",
 })
 export class SearchService {
-	constructor(private apiClient: ApiClientService) {}
+	private apiClient = inject(ApiClientService);
+
 	async search(
 		searchValue: string,
 		searchType: components["schemas"]["SearchFlags"],

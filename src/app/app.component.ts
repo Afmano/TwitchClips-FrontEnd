@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ToastModule } from "primeng/toast";
 import { RouterOutlet } from "@angular/router";
 import { HeaderComponent } from "./layout/header/header.component";
@@ -13,7 +13,7 @@ import { MessageService } from "primeng/api";
 	providers: [MessageService],
 })
 export class AppComponent {
-	title = "TwitchClips";
+	private messageService = inject(MessageService);
 
-	constructor(private messageService: MessageService) {}
+	title = "TwitchClips";
 }
