@@ -9,7 +9,7 @@ import { MessageService } from "primeng/api";
 	selector: "app-root",
 	imports: [RouterOutlet, HeaderComponent, FooterComponent, ToastModule],
 	templateUrl: "./app.component.html",
-	styleUrl: "./app.component.css",
+	styleUrl: "./app.component.scss",
 	providers: [MessageService],
 })
 export class AppComponent {

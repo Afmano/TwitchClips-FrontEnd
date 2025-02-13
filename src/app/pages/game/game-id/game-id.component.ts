@@ -9,7 +9,7 @@ type Game = components["schemas"]["Game"];
 	selector: "app-game-id",
 	imports: [CommonModule],
 	templateUrl: "./game-id.component.html",
-	styleUrl: "./game-id.component.css",
+	styleUrl: "./game-id.component.scss",
 })
 export class GameIdComponent implements OnInit {
 	private gameService = inject(GameService);

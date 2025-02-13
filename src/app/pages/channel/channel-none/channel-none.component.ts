@@ -5,6 +5,6 @@ import { SearchComponent } from "../../components/search/search.component";
 	selector: "app-channel-none",
 	imports: [SearchComponent],
 	templateUrl: "./channel-none.component.html",
-	styleUrl: "./channel-none.component.css",
+	styleUrl: "./channel-none.component.scss",
 })
 export class ChannelNoneComponent {}

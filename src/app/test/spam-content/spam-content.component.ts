@@ -5,6 +5,6 @@ import { PanelModule } from "primeng/panel";
 	selector: "app-spam-content",
 	imports: [PanelModule],
 	templateUrl: "./spam-content.component.html",
-	styleUrl: "./spam-content.component.css",
+	styleUrl: "./spam-content.component.scss",
 })
 export class SpamContentComponent {}

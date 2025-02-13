@@ -22,7 +22,7 @@ import { Ripple } from "primeng/ripple";
 		Ripple,
 	],
 	templateUrl: "./header.component.html",
-	styleUrl: "./header.component.css",
+	styleUrl: "./header.component.scss",
 })
 export class HeaderComponent implements OnInit {
 	items: MenuItem[] | undefined;

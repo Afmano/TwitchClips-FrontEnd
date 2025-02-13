@@ -5,6 +5,6 @@ import { SearchComponent } from "../../components/search/search.component";
 	selector: "app-game-none",
 	imports: [SearchComponent],
 	templateUrl: "./game-none.component.html",
-	styleUrl: "./game-none.component.css",
+	styleUrl: "./game-none.component.scss",
 })
 export class GameNoneComponent {}

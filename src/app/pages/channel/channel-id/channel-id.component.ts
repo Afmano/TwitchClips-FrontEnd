@@ -9,7 +9,7 @@ type Channel = components["schemas"]["ChannelResponse"];
 	selector: "app-channel-id",
 	imports: [CommonModule],
 	templateUrl: "./channel-id.component.html",
-	styleUrl: "./channel-id.component.css",
+	styleUrl: "./channel-id.component.scss",
 })
 export class ChannelIdComponent implements OnInit {
 	private channelService = inject(ChannelService);

@@ -6,6 +6,6 @@ import { SearchComponent } from "../components/search/search.component";
 	selector: "app-index",
 	imports: [ButtonModule, SearchComponent],
 	templateUrl: "./index.component.html",
-	styleUrl: "./index.component.css",
+	styleUrl: "./index.component.scss",
 })
 export class IndexComponent {}

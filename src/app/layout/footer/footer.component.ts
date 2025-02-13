@@ -8,7 +8,7 @@ import { BreadcrumbModule } from "primeng/breadcrumb";
 	selector: "app-footer",
 	imports: [BreadcrumbModule, RouterModule, CommonModule],
 	templateUrl: "./footer.component.html",
-	styleUrl: "./footer.component.css",
+	styleUrl: "./footer.component.scss",
 })
 export class FooterComponent implements OnInit {
 	items: MenuItem[] | undefined;

@@ -9,7 +9,7 @@ import { InputTextModule } from "primeng/inputtext";
 	selector: "app-token",
 	imports: [ButtonModule, InputGroup, InputTextModule],
 	templateUrl: "./token.component.html",
-	styleUrl: "./token.component.css",
+	styleUrl: "./token.component.scss",
 })
 export class TokenComponent {
 	private apiClient = inject(ApiClientService);
