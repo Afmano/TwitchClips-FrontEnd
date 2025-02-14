@@ -17,10 +17,14 @@ export class ChannelIdComponent implements OnInit {
 	private route = inject(ActivatedRoute);
 
 	channel: Channel | undefined;
+	twitchLinkTemplate = "https://www.twitch.tv/";
 
 	async ngOnInit() {
 		const id = this.route.snapshot.params["id"];
 		const response = await this.channelService.get(id);
 		this.channel = response.data;
+	}
+	getLink(creatorName: string) {
+		return this.twitchLinkTemplate + creatorName;
 	}
 }

@@ -1,4 +1,4 @@
-<div class="grid grid-cols-3 gap-3 m-2">
+<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-3 m-2">
     <!-- TODO: remove test clip array used and parent as localhost -->
     <!-- <div>
         <ng-template ngFor let-clip [ngForOf]="testClips">
@@ -9,15 +9,50 @@
         </ng-template>
     </div> -->
     <ng-template ngFor let-clip [ngForOf]="clips">
-        <p-card [header]="clip.title!">
-            <a [href]="clip.url" target="_blank">
-                <span>From: {{clip.broadcasterName}}</span>
-                <span class="float-right">By: {{clip.creatorName}}</span>
-                <img [src]="clip.thumbnailUrl" class="my-2" />
-            </a>
-            <span>views: {{clip.viewCount}}</span>
-            <span class="float-right">{{clip.duration | number: '1.0-0'}}
-                sec</span>
+        <p-card styleClass="overflow-hidden hover:outline-3 outline-purple-700 -py-1">
+            <ng-template #title>
+                <a [href]="clip.url" target="_blank" class="hover:text-purple-300">{{clip.title}}</a>
+            </ng-template>
+            <div>
+                <span *ngIf="clip.broadcasterName">
+                    From:
+                    <a *ngIf="isLatin(clip.broadcasterName); else nonLatin">
+                        <a [href]="getLink(clip.broadcasterName)" target="_blank" class="hover:text-purple-300">
+                            {{clip.broadcasterName}}
+                        </a>
+                    </a>
+                    <ng-template #nonLatin>{{clip.broadcasterName}}</ng-template>
+                </span>
+                <span *ngIf="clip.creatorName" class="float-right">
+                    by:
+                    <a *ngIf="isLatin(clip.creatorName); else nonLatin">
+                        <a [href]="getLink(clip.creatorName)" target="_blank" class="hover:text-purple-300">
+                            {{clip.creatorName}}
+                        </a>
+                    </a>
+                    <ng-template #nonLatin>{{clip.creatorName}}</ng-template>
+                </span>
+            </div>
+            <div class="my-2 mt-2">
+                <a [href]="clip.url" target="_blank">
+                    <div class="relative text-center brightness-50 hover:brightness-90">
+                        <img [src]="clip.thumbnailUrl" />
+                        <div class="w-full h-full absolute top-0 left-0 text-center ">
+                            <i
+                                class="pi pi-play text-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <span>
+                    Views: {{clip.viewCount}}
+                </span>
+                <span class="float-right">
+                    {{clip.duration | number: '1.0-0'}} sec
+                </span>
+            </div>
+
         </p-card>
     </ng-template>
 </div>

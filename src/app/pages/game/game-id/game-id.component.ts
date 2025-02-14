@@ -22,6 +22,7 @@ export class GameIdComponent implements OnInit {
 	boxArtHeight = 360;
 	gameData: Game | undefined;
 	boxArtConverted: string | undefined;
+	twitchCategoryLinkTemplate = "https://www.twitch.tv/directory/category/";
 
 	async ngOnInit() {
 		const id = this.route.snapshot.params["id"];
@@ -36,5 +37,19 @@ export class GameIdComponent implements OnInit {
 				.replace(this.boxArtHeightToken, this.boxArtHeight.toString())
 				.replace(this.boxArtWidthToken, this.boxArtWidth.toString());
 		}
+	}
+	getLink(catName: string) {
+		return this.twitchCategoryLinkTemplate + this.transformCatName(catName);
+	}
+	transformCatName(catName: string) {
+		return catName
+			.toLowerCase()
+			.replaceAll(" ", "-")
+			.replaceAll(":", "")
+			.replaceAll("+", "")
+			.replaceAll("'", "")
+			.replaceAll("/", "")
+			.replaceAll("é", "e")
+			.replaceAll("&", "and");
 	}
 }

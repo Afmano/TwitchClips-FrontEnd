@@ -1,7 +1,13 @@
 <div>
     <div *ngIf="gameData; else loading" class="m-2">
         <p>Id: {{gameData.id}}</p>
-        <p>Name: {{gameData.name}}</p>
+        <p>Name:
+            <a [href]="getLink(gameData.name!)" class="hover:text-purple-300">
+                {{gameData.name}}
+            </a>
+        </p>
+
+
         <img [src]="boxArtConverted" class="mt-2" />
     </div>
 
