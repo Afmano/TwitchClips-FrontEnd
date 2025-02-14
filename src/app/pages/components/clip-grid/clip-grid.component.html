@@ -1,0 +1,23 @@
+<div class="grid grid-cols-3 gap-3 m-2">
+    <!-- TODO: remove test clip array used and parent as localhost -->
+    <!-- <div>
+        <ng-template ngFor let-clip [ngForOf]="testClips">
+            <p-card [header]="clip.title!">
+                <iframe [src]="clip.embedUrl!+'&parent=localhost' | safe" height="360" width="640"
+                    allowfullscreen></iframe>
+            </p-card>
+        </ng-template>
+    </div> -->
+    <ng-template ngFor let-clip [ngForOf]="clips">
+        <p-card [header]="clip.title!">
+            <a [href]="clip.url" target="_blank">
+                <span>From: {{clip.broadcasterName}}</span>
+                <span class="float-right">By: {{clip.creatorName}}</span>
+                <img [src]="clip.thumbnailUrl" class="my-2" />
+            </a>
+            <span>views: {{clip.viewCount}}</span>
+            <span class="float-right">{{clip.duration | number: '1.0-0'}}
+                sec</span>
+        </p-card>
+    </ng-template>
+</div>

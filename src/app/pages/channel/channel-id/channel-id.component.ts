@@ -3,11 +3,12 @@ import { ChannelService } from "../../../services/api/channel.service";
 import { ActivatedRoute } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import type { components } from "../../../../api/schemas";
+import { ClipGridComponent } from "../../components/clip-grid/clip-grid.component";
 
 type Channel = components["schemas"]["ChannelResponse"];
 @Component({
 	selector: "app-channel-id",
-	imports: [CommonModule],
+	imports: [CommonModule, ClipGridComponent],
 	templateUrl: "./channel-id.component.html",
 	styleUrl: "./channel-id.component.scss",
 })

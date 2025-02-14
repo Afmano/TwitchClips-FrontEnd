@@ -1,8 +1,11 @@
 <div>
-    <div *ngIf="gameData; else loading">
+    <div *ngIf="gameData; else loading" class="m-2">
         <p>Id: {{gameData.id}}</p>
         <p>Name: {{gameData.name}}</p>
-        <img [src]="boxArtConverted" />
+        <img [src]="boxArtConverted" class="mt-2" />
     </div>
+
+    <app-clip-grid *ngIf="gameData" [id]="gameData.id!" source="Game" />
+
     <ng-template #loading>Loading...</ng-template>
 </div>

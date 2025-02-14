@@ -43,7 +43,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Clip/GetClipsByGame": {
+    "/api/Clip/GetClips": {
         parameters: {
             query?: never;
             header?: never;
@@ -53,7 +53,8 @@ export interface paths {
         get: {
             parameters: {
                 query?: {
-                    gameId?: string;
+                    id?: string;
+                    clipSource?: components["schemas"]["ClipSource"];
                     startDate?: string;
                     endDate?: string;
                     dateType?: components["schemas"]["DateType"];
@@ -85,7 +86,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Clip/GetAllClipsByGame": {
+    "/api/Clip/GetMaxClips": {
         parameters: {
             query?: never;
             header?: never;
@@ -95,7 +96,8 @@ export interface paths {
         get: {
             parameters: {
                 query?: {
-                    gameId?: string;
+                    id?: string;
+                    clipSource?: components["schemas"]["ClipSource"];
                     startDate?: string;
                     endDate?: string;
                     dateType?: components["schemas"]["DateType"];
@@ -322,6 +324,8 @@ export interface components {
             channelInformation?: components["schemas"]["ChannelInformation"];
             user?: components["schemas"]["User"];
         };
+        /** @enum {string} */
+        ClipSource: "Channel" | "Game";
         /** @enum {string} */
         DateType: "Today" | "Week" | "Month" | "Year" | "FiveYears" | "AllTime";
         Game: {

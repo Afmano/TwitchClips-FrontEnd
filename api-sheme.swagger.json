@@ -44,17 +44,24 @@
         }
       }
     },
-    "/api/Clip/GetClipsByGame": {
+    "/api/Clip/GetClips": {
       "get": {
         "tags": [
           "Clip"
         ],
         "parameters": [
           {
-            "name": "gameId",
+            "name": "id",
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "clipSource",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/ClipSource"
             }
           },
           {
@@ -114,17 +121,24 @@
         }
       }
     },
-    "/api/Clip/GetAllClipsByGame": {
+    "/api/Clip/GetMaxClips": {
       "get": {
         "tags": [
           "Clip"
         ],
         "parameters": [
           {
-            "name": "gameId",
+            "name": "id",
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "clipSource",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/ClipSource"
             }
           },
           {
@@ -519,6 +533,13 @@
           }
         },
         "additionalProperties": false
+      },
+      "ClipSource": {
+        "enum": [
+          "Channel",
+          "Game"
+        ],
+        "type": "string"
       },
       "DateType": {
         "enum": [

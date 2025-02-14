@@ -3,11 +3,12 @@ import { GameService } from "../../../services/api/game.service";
 import { ActivatedRoute } from "@angular/router";
 import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
+import { ClipGridComponent } from "../../components/clip-grid/clip-grid.component";
 
 type Game = components["schemas"]["Game"];
 @Component({
 	selector: "app-game-id",
-	imports: [CommonModule],
+	imports: [CommonModule, ClipGridComponent],
 	templateUrl: "./game-id.component.html",
 	styleUrl: "./game-id.component.scss",
 })
@@ -17,8 +18,8 @@ export class GameIdComponent implements OnInit {
 
 	boxArtWidthToken = "{width}";
 	boxArtHeightToken = "{height}";
-	boxArtWidth = 520;
-	boxArtHeight = 720;
+	boxArtWidth = 260;
+	boxArtHeight = 360;
 	gameData: Game | undefined;
 	boxArtConverted: string | undefined;
 
