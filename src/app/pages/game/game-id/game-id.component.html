@@ -8,7 +8,7 @@
         </p>
 
 
-        <img [src]="boxArtConverted" class="mt-2" />
+        <img [src]="boxArtService.boxArtResize(gameData)" class="mt-2" />
     </div>
 
     <app-clip-grid *ngIf="gameData" [id]="gameData.id!" source="Game" />

@@ -1,0 +1,5 @@
+/*
+Workaround file to trick TailwindCSS extension. 
+Caused by Tailwind 4 and PrimeNG compatibility issues, where .scss has to be main styles file(unsupported by Tailwind 4).
+*/
+@import "tailwindcss";

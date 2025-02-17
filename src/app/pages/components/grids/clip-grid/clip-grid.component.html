@@ -1,4 +1,4 @@
-<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-3 m-2">
+<app-base-grid>
     <!-- TODO: remove test clip array used and parent as localhost -->
     <!-- <div>
         <ng-template ngFor let-clip [ngForOf]="testClips">
@@ -16,7 +16,7 @@
             <div>
                 <span *ngIf="clip.broadcasterName">
                     From:
-                    <a *ngIf="isLatin(clip.broadcasterName); else nonLatin">
+                    <a *ngIf="latinService.isLatin(clip.broadcasterName); else nonLatin">
                         <a [href]="getLink(clip.broadcasterName)" target="_blank" class="hover:text-purple-300">
                             {{clip.broadcasterName}}
                         </a>
@@ -25,7 +25,7 @@
                 </span>
                 <span *ngIf="clip.creatorName" class="float-right">
                     by:
-                    <a *ngIf="isLatin(clip.creatorName); else nonLatin">
+                    <a *ngIf="latinService.isLatin(clip.creatorName); else nonLatin">
                         <a [href]="getLink(clip.creatorName)" target="_blank" class="hover:text-purple-300">
                             {{clip.creatorName}}
                         </a>
@@ -55,4 +55,4 @@
 
         </p-card>
     </ng-template>
-</div>
+</app-base-grid>

@@ -12,4 +12,9 @@ export class GameService {
 			params: { path: { id: id } },
 		});
 	}
+	async getTopGames(count = 20) {
+		return await this.apiClient.client.GET("/api/Game", {
+			params: { query: { count: count } },
+		});
+	}
 }
