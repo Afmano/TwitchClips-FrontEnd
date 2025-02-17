@@ -1,4 +1,10 @@
-import { Component, inject, input, type OnInit } from "@angular/core";
+import {
+	Component,
+	inject,
+	input,
+	type SimpleChanges,
+	type OnChanges,
+} from "@angular/core";
 import { GameService } from "../../../../services/api/game.service";
 import type { components } from "../../../../../api/schemas";
 import { BoxArtService } from "../../../../services/utils/box-art.service";
@@ -13,14 +19,15 @@ type Game = components["schemas"]["Game"];
 	templateUrl: "./game-grid.component.html",
 	styleUrl: "./game-grid.component.scss",
 })
-export class GameGridComponent implements OnInit {
+export class GameGridComponent implements OnChanges {
 	private gameService = inject(GameService);
 	boxArtService = inject(BoxArtService);
 
 	count = input<number>(20);
 	games: Game[] | undefined;
 
-	async ngOnInit() {
+	async ngOnChanges(changes: SimpleChanges) {
+		this.games = undefined;
 		const response = await this.gameService.getTopGames(this.count());
 		this.games = response.data;
 	}

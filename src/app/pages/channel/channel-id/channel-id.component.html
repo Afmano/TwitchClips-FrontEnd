@@ -1,6 +1,5 @@
 <div>
     <div *ngIf="channel; else loading" class="m-2">
-        <p>Id: {{channel.user?.id}}</p>
         <p>Login:
             <a [href]="getLink(channel.user!.login!)" class="hover:text-purple-300">{{channel.user?.displayName}}</a>
         </p>

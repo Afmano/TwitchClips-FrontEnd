@@ -1,48 +1,45 @@
 <app-base-grid>
-    <!-- TODO: remove test clip array used and parent as localhost -->
-    <!-- <div>
-        <ng-template ngFor let-clip [ngForOf]="testClips">
-            <p-card [header]="clip.title!">
-                <iframe [src]="clip.embedUrl!+'&parent=localhost' | safe" height="360" width="640"
-                    allowfullscreen></iframe>
-            </p-card>
-        </ng-template>
-    </div> -->
     <ng-template ngFor let-clip [ngForOf]="clips">
         <p-card styleClass="overflow-hidden hover:outline-3 outline-purple-700 -py-1">
             <ng-template #title>
-                <a [href]="clip.url" target="_blank" class="hover:text-purple-300">{{clip.title}}</a>
+                {{clip.title}}
             </ng-template>
             <div>
                 <span *ngIf="clip.broadcasterName">
                     From:
-                    <a *ngIf="latinService.isLatin(clip.broadcasterName); else nonLatin">
+                    <!-- <a *ngIf="latinService.isLatin(clip.broadcasterName); else nonLatin">
                         <a [href]="getLink(clip.broadcasterName)" target="_blank" class="hover:text-purple-300">
                             {{clip.broadcasterName}}
                         </a>
+                    </a> -->
+                    <a [routerLink]="['/channel', clip.broadcasterId]" class="hover:text-purple-300">
+                        {{clip.broadcasterName}}
                     </a>
                     <ng-template #nonLatin>{{clip.broadcasterName}}</ng-template>
                 </span>
                 <span *ngIf="clip.creatorName" class="float-right">
                     by:
-                    <a *ngIf="latinService.isLatin(clip.creatorName); else nonLatin">
-                        <a [href]="getLink(clip.creatorName)" target="_blank" class="hover:text-purple-300">
+                    <!--<a *ngIf="latinService.isLatin(clip.creatorName); else nonLatin">
+                         <a [href]="getLink(clip.creatorName)" target="_blank" class="hover:text-purple-300">
                             {{clip.creatorName}}
-                        </a>
+                        </a> 
+                    </a>-->
+                    <a [routerLink]="['/channel', clip.creatorId]" class="hover:text-purple-300">
+                        {{clip.creatorName}}
                     </a>
                     <ng-template #nonLatin>{{clip.creatorName}}</ng-template>
                 </span>
             </div>
             <div class="my-2 mt-2">
-                <a [href]="clip.url" target="_blank">
-                    <div class="relative text-center brightness-50 hover:brightness-90">
+                <div (click)="onClipClick(clip)">
+                    <div class="relative text-center brightness-50 hover:brightness-90 cursor-pointer">
                         <img [src]="clip.thumbnailUrl" />
                         <div class="w-full h-full absolute top-0 left-0 text-center ">
                             <i
                                 class="pi pi-play text-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div>
                 <span>
@@ -52,7 +49,15 @@
                     {{clip.duration | number: '1.0-0'}} sec
                 </span>
             </div>
-
         </p-card>
     </ng-template>
 </app-base-grid>
+<p-dialog *ngIf="selectedClip" [modal]="true" [(visible)]="isClipDialog" draggable="false" dismissableMask="true"
+    styleClass="rounded-none" resizable="true">
+    <ng-template #headless>
+        <div class="-m-1">
+            <iframe [src]="clipEmbedmentSource(selectedClip) | safe" class="aspect-video object-cover w-[80vw]"
+                allowfullscreen></iframe>
+        </div>
+    </ng-template>
+</p-dialog>

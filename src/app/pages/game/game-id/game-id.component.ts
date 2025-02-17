@@ -1,6 +1,6 @@
 import { Component, inject, type OnInit } from "@angular/core";
 import { GameService } from "../../../services/api/game.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, type ParamMap } from "@angular/router";
 import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
 import { ClipGridComponent } from "../../components/grids/clip-grid/clip-grid.component";
@@ -24,9 +24,15 @@ export class GameIdComponent implements OnInit {
 	twitchCategoryLinkTemplate = "https://www.twitch.tv/directory/category/";
 
 	async ngOnInit() {
-		const id = this.route.snapshot.params["id"];
-		const response = await this.gameService.get(id);
-		this.gameData = response.data;
+		this.route.paramMap.subscribe(async (params: ParamMap) => {
+			const id = params.get("id");
+			if (!id) {
+				return;
+			}
+
+			const response = await this.gameService.get(id);
+			this.gameData = response.data;
+		});
 	}
 
 	getLink(catName: string) {
