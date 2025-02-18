@@ -7,14 +7,14 @@ import {
 } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { CommonModule } from "@angular/common";
-import type { components } from "../../../../../api/schemas";
-import { ClipService } from "../../../../services/api/clip.service";
-import { BaseGridComponent } from "../base-grid/base-grid.component";
 import { DialogModule } from "primeng/dialog";
-import { SafePipe } from "../../../../pipes/safe.pipe";
-import { environment } from "../../../../../environments/environment";
 import { RouterModule } from "@angular/router";
-import { NumberShortenerPipe } from "../../../../pipes/number-shortener.pipe";
+import type { components } from "../../../../api/schemas";
+import { SafePipe } from "../../../pipes/safe.pipe";
+import { NumberShortenerPipe } from "../../../pipes/number-shortener.pipe";
+import { ClipService } from "../../../services/api/clip.service";
+import { BaseGridComponent } from "../base-grid/base-grid.component";
+import { environment } from "../../../../environments/environment";
 
 type SavedClip = components["schemas"]["SavedClip"];
 type ClipSource = components["schemas"]["ClipSource"];

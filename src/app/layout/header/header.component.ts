@@ -1,84 +1,37 @@
 import type { MenuItem } from "primeng/api";
 import { CommonModule } from "@angular/common";
-import { Component, type OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Menubar } from "primeng/menubar";
-import { BadgeModule } from "primeng/badge";
-import { AvatarModule } from "primeng/avatar";
-import { InputTextModule } from "primeng/inputtext";
-import { ButtonModule } from "primeng/button";
 import { RouterModule } from "@angular/router";
-import { Ripple } from "primeng/ripple";
+import { SearchComponent } from "../../components/search/search.component";
 
 @Component({
 	selector: "app-header",
-	imports: [
-		Menubar,
-		BadgeModule,
-		AvatarModule,
-		InputTextModule,
-		CommonModule,
-		ButtonModule,
-		RouterModule,
-		Ripple,
-	],
+	imports: [Menubar, CommonModule, RouterModule, SearchComponent],
 	templateUrl: "./header.component.html",
 	styleUrl: "./header.component.scss",
 })
-export class HeaderComponent implements OnInit {
-	items: MenuItem[] | undefined;
-
-	ngOnInit() {
-		this.items = [
-			{
-				label: "Home",
-				icon: "pi pi-home",
-				routerLink: "/",
-			},
-			{
-				label: "Test",
-				icon: "pi pi-home",
-				routerLink: "/test",
-			},
-			{
-				label: "Token",
-				icon: "pi pi-home",
-				routerLink: "/token",
-			},
-			{
-				label: "Games",
-				icon: "pi pi-home",
-				routerLink: "/game",
-			},
-			{
-				label: "Channels",
-				icon: "pi pi-home",
-				routerLink: "/channel",
-			},
-			{
-				label: "Numbers",
-				icon: "pi pi-search",
-				items: [
-					{
-						label: "One",
-						routerLink: "/1",
-					},
-					{
-						label: "Two",
-						routerLink: "/2",
-					},
-					{
-						label: "Three",
-						routerLink: "/3",
-					},
-					{
-						separator: true,
-					},
-					{
-						label: "Ten",
-						routerLink: "/10",
-					},
-				],
-			},
-		];
-	}
+export class HeaderComponent {
+	items: MenuItem[] = [
+		{
+			label: "Home",
+			icon: "pi pi-home",
+			routerLink: "/",
+		},
+		{
+			label: "Games",
+			icon: "pi pi-hashtag",
+			routerLink: "/game",
+		},
+		{
+			label: "Channels",
+			icon: "pi pi-user",
+			routerLink: "/channel",
+		},
+		{
+			label: "Token Test",
+			icon: "pi pi-search",
+			routerLink: "/token",
+		},
+	];
 }

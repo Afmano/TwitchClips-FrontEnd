@@ -3,7 +3,7 @@ import { ChannelService } from "../../../services/api/channel.service";
 import { ActivatedRoute, type ParamMap } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import type { components } from "../../../../api/schemas";
-import { ClipGridComponent } from "../../components/grids/clip-grid/clip-grid.component";
+import { ClipGridComponent } from "../../../components/grids/clip-grid/clip-grid.component";
 
 type Channel = components["schemas"]["ChannelResponse"];
 @Component({

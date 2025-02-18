@@ -3,9 +3,9 @@ import { GameService } from "../../../services/api/game.service";
 import { ActivatedRoute, type ParamMap } from "@angular/router";
 import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
-import { ClipGridComponent } from "../../components/grids/clip-grid/clip-grid.component";
 import { BoxArtPipe } from "../../../pipes/box-art.pipe";
 import { CategoryLinkPipe } from "../../../pipes/category-link.pipe";
+import { ClipGridComponent } from "../../../components/grids/clip-grid/clip-grid.component";
 
 type Game = components["schemas"]["Game"];
 @Component({

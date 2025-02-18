@@ -5,9 +5,10 @@ import {
 	type SelectChangeEvent,
 	SelectModule,
 } from "primeng/select";
-import { SearchService } from "../../../services/api/search.service";
-import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
+import { SearchService } from "../../services/api/search.service";
+import type { components } from "../../../api/schemas";
+import { SearchItemComponent } from "./search-item/search-item.component";
 
 const searchLimit = 3;
 type Game = components["schemas"]["Game"];
@@ -15,12 +16,13 @@ type Channel = components["schemas"]["Channel"];
 type SearchFlags = components["schemas"]["SearchFlags"];
 @Component({
 	selector: "app-search",
-	imports: [SelectModule, RouterModule, CommonModule],
+	imports: [SelectModule, RouterModule, CommonModule, SearchItemComponent],
 	templateUrl: "./search.component.html",
 	styleUrl: "./search.component.scss",
 })
 export class SearchComponent {
-	@ViewChild("searchField") searchField: Select | undefined;
+	@ViewChild("searchField")
+	searchField!: Select;
 	private router = inject(Router);
 	private searchService = inject(SearchService);
 
@@ -56,14 +58,25 @@ export class SearchComponent {
 		} else {
 			const selected = event.value;
 			const type = this.returnTypeName(event.value);
+			this.searchField.clear();
 			this.router.navigate([type, selected.id]);
 		}
 	}
 	returnTypeName(item: Game | Channel) {
 		// biome-ignore lint/suspicious/noExplicitAny:
-		return (item as any).broadcasterLogin !== undefined ? "channel" : "game";
+		return (item as any).broadcasterLogin ? "channel" : "game";
 	}
 	onFocus() {
-		this.searchField?.show();
+		this.searchField.show();
+	}
+	getPlaceholder() {
+		switch (this.searchType()) {
+			case "All":
+				return "Search game or channel";
+			case "Channel":
+				return "Search channel";
+			case "Game":
+				return "Search game";
+		}
 	}
 }

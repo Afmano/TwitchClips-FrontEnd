@@ -1,0 +1,28 @@
+<div class="card flex justify-center">
+    <p-select #searchField name="searchField" [options]="searchResults" [placeholder]="getPlaceholder()"
+        [editable]="true" class="searchField" [loading]="isLoading" (onChange)="onChange($event)" scrollHeight="450px"
+        [fluid]="false" size="large" (onFocus)="onFocus()">
+        <ng-template let-selectedOption #selectedItem>
+            LOL
+            <ng-container *ngIf="selectedOption.broadcasterLogin; else game">
+                <app-search-item [image]="selectedOption.thumbnailUrl" [name]="selectedOption.displayName" />
+            </ng-container>
+            <ng-template #game>
+                <app-search-item [image]="selectedOption.boxArtUrl" [name]="selectedOption.name" />
+            </ng-template>
+        </ng-template>
+        <ng-template let-item #item>
+            <ng-container *ngIf="item.broadcasterLogin; else game">
+                <app-search-item [image]="item.thumbnailUrl" [name]="item.displayName" />
+            </ng-container>
+            <ng-template #game>
+                <app-search-item [image]="item.boxArtUrl" [name]="item.name" />
+            </ng-template>
+        </ng-template>
+        <ng-template #empty>
+            <span *ngIf="isLoading; else startType">Searching...</span>
+            <ng-template #startType><span *ngIf="!isSearched; else notFound">Start typing...</span></ng-template>
+            <ng-template #notFound><span>No result</span></ng-template>
+        </ng-template>
+    </p-select>
+</div>

@@ -5,12 +5,12 @@ import {
 	type SimpleChanges,
 	type OnChanges,
 } from "@angular/core";
-import { GameService } from "../../../../services/api/game.service";
-import type { components } from "../../../../../api/schemas";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { BaseGridComponent } from "../base-grid/base-grid.component";
-import { BoxArtPipe } from "../../../../pipes/box-art.pipe";
+import { BoxArtPipe } from "../../../pipes/box-art.pipe";
+import type { components } from "../../../../api/schemas";
+import { GameService } from "../../../services/api/game.service";
 
 type Game = components["schemas"]["Game"];
 @Component({
@@ -22,7 +22,7 @@ type Game = components["schemas"]["Game"];
 export class GameGridComponent implements OnChanges {
 	private gameService = inject(GameService);
 
-	count = input<number>(20);
+	count = input.required<number>();
 	games: Game[] | undefined;
 
 	async ngOnChanges(changes: SimpleChanges) {
