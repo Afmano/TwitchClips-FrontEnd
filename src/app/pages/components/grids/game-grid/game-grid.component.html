@@ -1,9 +1,9 @@
 <div>
     <app-base-grid>
         <ng-template ngFor let-game [ngForOf]="games">
-            <a [routerLink]="['/game', game.id]" routerLinkActive="router-link-active"
+            <a [routerLink]="['/game', game.id]"
                 class="hover:outline-3 outline-purple-700 [&>img]:rounded-md rounded-md">
-                <img [src]="boxArtService.boxArtResize(game)" />
+                <img [src]="game | boxArt" />
             </a>
         </ng-template>
     </app-base-grid>

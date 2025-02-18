@@ -7,11 +7,6 @@
             <div>
                 <span *ngIf="clip.broadcasterName">
                     From:
-                    <!-- <a *ngIf="latinService.isLatin(clip.broadcasterName); else nonLatin">
-                        <a [href]="getLink(clip.broadcasterName)" target="_blank" class="hover:text-purple-300">
-                            {{clip.broadcasterName}}
-                        </a>
-                    </a> -->
                     <a [routerLink]="['/channel', clip.broadcasterId]" class="hover:text-purple-300">
                         {{clip.broadcasterName}}
                     </a>
@@ -19,11 +14,6 @@
                 </span>
                 <span *ngIf="clip.creatorName" class="float-right">
                     by:
-                    <!--<a *ngIf="latinService.isLatin(clip.creatorName); else nonLatin">
-                         <a [href]="getLink(clip.creatorName)" target="_blank" class="hover:text-purple-300">
-                            {{clip.creatorName}}
-                        </a> 
-                    </a>-->
                     <a [routerLink]="['/channel', clip.creatorId]" class="hover:text-purple-300">
                         {{clip.creatorName}}
                     </a>
@@ -43,7 +33,7 @@
             </div>
             <div>
                 <span>
-                    Views: {{clip.viewCount}}
+                    Views: {{clip.viewCount! | numberShortener}}
                 </span>
                 <span class="float-right">
                     {{clip.duration | number: '1.0-0'}} sec

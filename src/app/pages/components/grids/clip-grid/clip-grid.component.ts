@@ -9,12 +9,12 @@ import { CardModule } from "primeng/card";
 import { CommonModule } from "@angular/common";
 import type { components } from "../../../../../api/schemas";
 import { ClipService } from "../../../../services/api/clip.service";
-import { LatinService } from "../../../../services/utils/latin.service";
 import { BaseGridComponent } from "../base-grid/base-grid.component";
 import { DialogModule } from "primeng/dialog";
 import { SafePipe } from "../../../../pipes/safe.pipe";
 import { environment } from "../../../../../environments/environment";
 import { RouterModule } from "@angular/router";
+import { NumberShortenerPipe } from "../../../../pipes/number-shortener.pipe";
 
 type SavedClip = components["schemas"]["SavedClip"];
 type ClipSource = components["schemas"]["ClipSource"];
@@ -27,17 +27,17 @@ type ClipSource = components["schemas"]["ClipSource"];
 		DialogModule,
 		SafePipe,
 		RouterModule,
+		NumberShortenerPipe,
 	],
 	templateUrl: "./clip-grid.component.html",
 	styleUrl: "./clip-grid.component.scss",
 })
 export class ClipGridComponent implements OnChanges {
 	private clipService = inject(ClipService);
-	latinService = inject(LatinService);
 
-	linkTemplate = "https://www.twitch.tv/";
 	id = input.required<string>();
 	source = input.required<ClipSource>();
+	linkTemplate = "https://www.twitch.tv/";
 	clips: SavedClip[] | undefined;
 	isClipDialog = false;
 	selectedClip: SavedClip | undefined;

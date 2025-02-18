@@ -4,24 +4,21 @@ import { ActivatedRoute, type ParamMap } from "@angular/router";
 import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
 import { ClipGridComponent } from "../../components/grids/clip-grid/clip-grid.component";
-import { CategoryLinkService } from "../../../services/utils/category-link.service";
-import { BoxArtService } from "../../../services/utils/box-art.service";
+import { BoxArtPipe } from "../../../pipes/box-art.pipe";
+import { CategoryLinkPipe } from "../../../pipes/category-link.pipe";
 
 type Game = components["schemas"]["Game"];
 @Component({
 	selector: "app-game-id",
-	imports: [CommonModule, ClipGridComponent],
+	imports: [CommonModule, ClipGridComponent, BoxArtPipe, CategoryLinkPipe],
 	templateUrl: "./game-id.component.html",
 	styleUrl: "./game-id.component.scss",
 })
 export class GameIdComponent implements OnInit {
 	private route = inject(ActivatedRoute);
 	private gameService = inject(GameService);
-	private categoryLinkService = inject(CategoryLinkService);
-	boxArtService = inject(BoxArtService);
 
 	gameData: Game | undefined;
-	twitchCategoryLinkTemplate = "https://www.twitch.tv/directory/category/";
 
 	async ngOnInit() {
 		this.route.paramMap.subscribe(async (params: ParamMap) => {
@@ -33,12 +30,5 @@ export class GameIdComponent implements OnInit {
 			const response = await this.gameService.get(id);
 			this.gameData = response.data;
 		});
-	}
-
-	getLink(catName: string) {
-		return (
-			this.twitchCategoryLinkTemplate +
-			this.categoryLinkService.transformCatName(catName)
-		);
 	}
 }
