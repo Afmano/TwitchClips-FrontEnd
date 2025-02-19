@@ -1,16 +1,13 @@
 <div>
     <div *ngIf="gameData; else loading" class="m-2">
-        <h1>
+        <h1 class="text-3xl font-bold m-6 text-center">
             <a *ngIf="gameData.name! | categoryLink as link ; else noLink" [href]="link" class="hover:text-purple-300">
                 {{gameData.name}}
             </a>
             <ng-template #noLink>{{gameData.name}}</ng-template>
         </h1>
-
-        <img [src]="gameData | boxArt" class="mt-2" />
+        <!-- <img [src]="gameData | boxArt" class="mt-2" /> -->
     </div>
-
     <app-clip-grid *ngIf="gameData" [id]="gameData.id!" source="Game" />
-
     <ng-template #loading>Loading...</ng-template>
 </div>

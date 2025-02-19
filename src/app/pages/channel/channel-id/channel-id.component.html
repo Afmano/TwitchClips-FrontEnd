@@ -1,11 +1,17 @@
 <div>
-    <div *ngIf="channel; else loading" class="m-2">
-        <p>Login:
-            <a [href]="getLink(channel.user!.login!)" class="hover:text-purple-300">{{channel.user?.displayName}}</a>
+    <div *ngIf="channel && channel.user && channel.channelInformation; else loading" class="m-2">
+        <p>
+            <a [href]="getLink(channel.user.login!)" class="hover:text-purple-300">
+                {{channel.user.displayName }}
+            </a>
         </p>
-        <p>Language: {{channel.channelInformation?.broadcasterLanguage}}</p>
-        <p>Description: {{channel.user?.description}}</p>
-        <img [src]="channel.user?.profileImageUrl" class="mt-2" />
+        <p *ngIf="channel.channelInformation.broadcasterLanguage">
+            Language: {{channel.channelInformation.broadcasterLanguage}}
+        </p>
+        <p *ngIf="channel.user.description" class="max-w-md">
+            Description: {{channel.user.description}}
+        </p>
+        <!-- <img [src]="channel.user?.profileImageUrl" class="mt-2" /> -->
     </div>
     <app-clip-grid *ngIf="channel" [id]="channel.user!.id!" source="Channel" />
     <ng-template #loading>Loading...</ng-template>

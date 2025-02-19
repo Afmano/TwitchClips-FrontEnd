@@ -3,14 +3,13 @@ import { GameService } from "../../../services/api/game.service";
 import { ActivatedRoute, type ParamMap } from "@angular/router";
 import type { components } from "../../../../api/schemas";
 import { CommonModule } from "@angular/common";
-import { BoxArtPipe } from "../../../pipes/box-art.pipe";
 import { CategoryLinkPipe } from "../../../pipes/category-link.pipe";
 import { ClipGridComponent } from "../../../components/grids/clip-grid/clip-grid.component";
 
 type Game = components["schemas"]["Game"];
 @Component({
 	selector: "app-game-id",
-	imports: [CommonModule, ClipGridComponent, BoxArtPipe, CategoryLinkPipe],
+	imports: [CommonModule, ClipGridComponent, CategoryLinkPipe],
 	templateUrl: "./game-id.component.html",
 	styleUrl: "./game-id.component.scss",
 })

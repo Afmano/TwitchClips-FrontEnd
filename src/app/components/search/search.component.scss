@@ -1,13 +1,3 @@
 ::ng-deep .p-select-dropdown {
     display: none;
 }
-
-//TODO: remove styles from here
-.searchField {
-    --width: 350px;
-    width: var(--width);
-
-    & .itemText {
-        width: calc(var(--width) * 0.8);
-    }
-}

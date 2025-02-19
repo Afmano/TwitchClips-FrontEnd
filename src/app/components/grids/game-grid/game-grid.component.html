@@ -2,7 +2,7 @@
     <app-base-grid>
         <ng-template ngFor let-game [ngForOf]="games">
             <a [routerLink]="['/game', game.id]"
-                class="hover:outline-3 outline-purple-700 [&>img]:rounded-md rounded-md">
+                class="hover:outline-3 outline-purple-700 [&>img]:rounded-md rounded-md block m-auto">
                 <img [src]="game | boxArt" />
             </a>
         </ng-template>

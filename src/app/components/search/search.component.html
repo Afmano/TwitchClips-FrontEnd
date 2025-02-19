@@ -1,9 +1,8 @@
 <div class="card flex justify-center">
-    <p-select #searchField name="searchField" [options]="searchResults" [placeholder]="getPlaceholder()"
-        [editable]="true" class="searchField" [loading]="isLoading" (onChange)="onChange($event)" scrollHeight="450px"
-        [fluid]="false" size="large" (onFocus)="onFocus()">
+    <p-select #searchField name="searchField" styleClass="w-3xs md:w-xs" [options]="searchResults"
+        [placeholder]="getPlaceholder()" [editable]="true" [loading]="isLoading" (onChange)="onChange($event)"
+        scrollHeight="450px" [fluid]="false" size="large" (onFocus)="onFocus()">
         <ng-template let-selectedOption #selectedItem>
-            LOL
             <ng-container *ngIf="selectedOption.broadcasterLogin; else game">
                 <app-search-item [image]="selectedOption.thumbnailUrl" [name]="selectedOption.displayName" />
             </ng-container>
